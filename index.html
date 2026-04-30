@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Portfolio — Creative Coding (p5.js)</title>
+    <meta name="description" content="Minimal portfolio showcasing 11 p5.js projects." />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="wrap">
+      <header class="nav">
+        <a class="brand" href="/index.html">
+          <strong>Portfolio</strong>
+          <span>p5.js / creative coding</span>
+        </a>
+        <nav class="navlinks">
+          <a class="pill" data-nav="home" href="/index.html">Home</a>
+          <a class="pill" data-nav="projects" href="/projects/index.html">Projects</a>
+          <a class="pill" data-nav="about" href="/about.html">About</a>
+        </nav>
+      </header>
+
+      <section class="hero">
+        <div class="panel heroCopy">
+          <div class="kicker">Media + Creative Coding</div>
+          <h1>Interactive experiments, built with p5.js.</h1>
+          <p class="lede">
+            A clean gallery of 11 sketches made this semester—each one runnable directly in the browser, with concept, interaction notes, and development details.
+          </p>
+          <div class="ctaRow">
+            <a class="btn" href="/projects/index.html">View all projects →</a>
+            <a class="btn secondary" href="/about.html">About / skills</a>
+          </div>
+        </div>
+
+        <div class="panel heroImg">
+          <img
+            src="/assets/portrait.jpg"
+            alt="Portrait photo"
+            loading="eager"
+            fetchpriority="high"
+          />
+          <div class="caption">
+            <div>
+              <div class="name">Jake</div>
+              <div class="tag">creative developer</div>
+            </div>
+            <div class="tag">minimal / b&w</div>
+          </div>
+        </div>
+      </section>
+
+      <div class="sectionHead">
+        <h2>Featured</h2>
+        <a href="/projects/index.html">open gallery</a>
+      </div>
+      <div id="featured" class="grid" aria-label="Featured projects"></div>
+
+      <footer class="footer">
+        <div>© <span id="year"></span> Jake</div>
+        <div class="mono">Use ← → on project pages</div>
+      </footer>
+    </div>
+
+    <script type="module">
+      import { setActiveNav, loadProjects, escapeHtml } from "/js/site.js";
+      setActiveNav();
+      document.getElementById("year").textContent = String(new Date().getFullYear());
+
+      const root = document.getElementById("featured");
+      const projects = await loadProjects();
+      const featured = projects.filter((p) => p.featured).slice(0, 5);
+
+      root.innerHTML = featured
+        .map((p) => {
+          const href = `/project.html?id=${encodeURIComponent(p.id)}`;
+          const title = escapeHtml(p.title);
+          const desc = escapeHtml(p.short);
+          return `
+            <a class="card" href="${href}">
+              <div class="thumb">${escapeHtml(p.thumbLabel ?? "preview")}</div>
+              <div class="cardBody">
+                <h3 class="cardTitle">${title}</h3>
+                <p class="cardDesc">${desc}</p>
+              </div>
+            </a>
+          `;
+        })
+        .join("");
+    </script>
+  </body>
+</html>
+

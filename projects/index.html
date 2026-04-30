@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Projects — Portfolio</title>
+    <meta name="description" content="Gallery of 11 p5.js projects." />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="wrap">
+      <header class="nav">
+        <a class="brand" href="/index.html">
+          <strong>Portfolio</strong>
+          <span>p5.js / creative coding</span>
+        </a>
+        <nav class="navlinks">
+          <a class="pill" data-nav="home" href="/index.html">Home</a>
+          <a class="pill" data-nav="projects" href="/projects/index.html">Projects</a>
+          <a class="pill" data-nav="about" href="/about.html">About</a>
+        </nav>
+      </header>
+
+      <div class="projectTop">
+        <div>
+          <h1>Projects</h1>
+          <div class="projectMeta">All 11 projects in a clean grid. Click any card to open the interactive sketch.</div>
+        </div>
+        <div class="hint mono muted">Tip: use <span class="kbd">←</span> / <span class="kbd">→</span> on detail pages</div>
+      </div>
+
+      <div id="grid" class="grid" aria-label="All projects"></div>
+
+      <footer class="footer">
+        <div>© <span id="year"></span> Jake</div>
+        <div class="mono">11 sketches, one coherent system</div>
+      </footer>
+    </div>
+
+    <script type="module">
+      import { setActiveNav, loadProjects, escapeHtml } from "/js/site.js";
+      setActiveNav();
+      document.getElementById("year").textContent = String(new Date().getFullYear());
+
+      const root = document.getElementById("grid");
+      const projects = await loadProjects();
+      root.innerHTML = projects
+        .map((p) => {
+          const href = `/project.html?id=${encodeURIComponent(p.id)}`;
+          return `
+            <a class="card" href="${href}">
+              <div class="thumb">${escapeHtml(p.thumbLabel ?? "preview")}</div>
+              <div class="cardBody">
+                <h3 class="cardTitle">${escapeHtml(p.title)}</h3>
+                <p class="cardDesc">${escapeHtml(p.short)}</p>
+              </div>
+            </a>
+          `;
+        })
+        .join("");
+    </script>
+  </body>
+</html>
+

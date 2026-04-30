@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>About — Portfolio</title>
+    <meta name="description" content="About + skills for this p5.js portfolio." />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="wrap">
+      <header class="nav">
+        <a class="brand" href="/index.html">
+          <strong>Portfolio</strong>
+          <span>p5.js / creative coding</span>
+        </a>
+        <nav class="navlinks">
+          <a class="pill" data-nav="home" href="/index.html">Home</a>
+          <a class="pill" data-nav="projects" href="/projects/index.html">Projects</a>
+          <a class="pill" data-nav="about" href="/about.html">About</a>
+        </nav>
+      </header>
+
+      <div class="projectTop">
+        <div>
+          <h1>About</h1>
+          <div class="projectMeta">
+            Media student focused on creative coding, interaction, and generative visuals. This portfolio is intentionally minimal so the sketches stay the main event.
+          </div>
+        </div>
+        <a class="btn secondary" href="/projects/index.html">Browse projects →</a>
+      </div>
+
+      <div class="twoCol">
+        <section class="box">
+          <h3>Skills</h3>
+          <ul class="list">
+            <li>Creative coding (p5.js)</li>
+            <li>Interaction design</li>
+            <li>Generative systems</li>
+            <li>Visual storytelling</li>
+            <li>Rapid prototyping</li>
+          </ul>
+        </section>
+        <section class="box">
+          <h3>Tools</h3>
+          <ul class="list">
+            <li>p5.js, JavaScript, HTML/CSS</li>
+            <li>VS Code / Cursor</li>
+            <li>Git/GitHub (optional links per project)</li>
+            <li>Adobe / creative suite (as needed)</li>
+          </ul>
+        </section>
+      </div>
+
+      <section class="box" style="margin-top: 14px">
+        <h3>Contact</h3>
+        <p>
+          Add your email / socials here. (Kept blank by default.)
+        </p>
+        <ul class="list">
+          <li><span class="mono">Email</span>: your.name@example.com</li>
+          <li><span class="mono">GitHub</span>: github.com/your-handle</li>
+          <li><span class="mono">Instagram</span>: @your-handle</li>
+        </ul>
+      </section>
+
+      <footer class="footer">
+        <div>© <span id="year"></span> Jake</div>
+        <div class="mono">Black/white, grid-based, fast</div>
+      </footer>
+    </div>
+
+    <script type="module">
+      import { setActiveNav } from "/js/site.js";
+      setActiveNav();
+      document.getElementById("year").textContent = String(new Date().getFullYear());
+    </script>
+  </body>
+</html>
+

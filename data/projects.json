@@ -1,0 +1,148 @@
+{
+  "projects": [
+    {
+      "id": "p01",
+      "title": "Project 01 — Motion Study",
+      "short": "A minimal motion system with a single rule set.",
+      "concept": "Explores motion using a constrained rule-based animation.",
+      "whatItDoes": "Generates a looping composition with subtle variation.",
+      "howToInteract": ["Move the mouse to bias the field.", "Click to reseed."],
+      "tools": ["p5.js", "JavaScript"],
+      "challenges": ["Keeping it smooth while still feeling alive."],
+      "sketchModule": "/sketches/p01/sketch.js",
+      "thumbLabel": "p01",
+      "featured": true
+    },
+    {
+      "id": "p02",
+      "title": "Project 02 — Typographic Grid",
+      "short": "A grid that responds like an instrument.",
+      "concept": "Combines a strict grid with responsive typography.",
+      "whatItDoes": "Renders a typographic pattern that changes with input.",
+      "howToInteract": ["Drag to change density.", "Press R to reset."],
+      "tools": ["p5.js", "JavaScript"],
+      "challenges": ["Balancing readability and abstraction."],
+      "sketchModule": "/sketches/p02/sketch.js",
+      "thumbLabel": "p02",
+      "featured": true
+    },
+    {
+      "id": "p03",
+      "title": "Project 03 — Noise Terrain",
+      "short": "A calm terrain made from noise and light.",
+      "concept": "Uses noise to create depth and surface.",
+      "whatItDoes": "Draws a terrain-like field with animated lighting.",
+      "howToInteract": ["Scroll (or trackpad) to zoom.", "Click to toggle mode."],
+      "tools": ["p5.js", "JavaScript"],
+      "challenges": ["Avoiding heavy loops and keeping FPS stable."],
+      "sketchModule": "/sketches/p03/sketch.js",
+      "thumbLabel": "p03",
+      "featured": true
+    },
+    {
+      "id": "p04",
+      "title": "Project 04 — Particle Letters",
+      "short": "Letters that break apart into particles.",
+      "concept": "Turns a typographic form into a system of points.",
+      "whatItDoes": "Particles converge to form shapes, then disperse.",
+      "howToInteract": ["Move mouse to disturb.", "Press Space to switch word."],
+      "tools": ["p5.js", "JavaScript"],
+      "challenges": ["Making interactions feel intentional, not chaotic."],
+      "sketchModule": "/sketches/p04/sketch.js",
+      "thumbLabel": "p04",
+      "featured": false
+    },
+    {
+      "id": "p05",
+      "title": "Project 05 — Orbit Machine",
+      "short": "Orbits within orbits, drawn like a diagram.",
+      "concept": "Layered circular motion to build complexity.",
+      "whatItDoes": "Draws nested orbital paths with trails.",
+      "howToInteract": ["Drag to change speed.", "Press T to toggle trails."],
+      "tools": ["p5.js", "JavaScript"],
+      "challenges": ["Preventing visual overload."],
+      "sketchModule": "/sketches/p05/sketch.js",
+      "thumbLabel": "p05",
+      "featured": false
+    },
+    {
+      "id": "p06",
+      "title": "Project 06 — Cursor Echo",
+      "short": "An interaction study: cursor as brush + delay.",
+      "concept": "Explores time-lag and memory in gestures.",
+      "whatItDoes": "Echoes your movement as a trailing waveform.",
+      "howToInteract": ["Draw with the mouse.", "Click to clear."],
+      "tools": ["p5.js", "JavaScript"],
+      "challenges": ["Making the trail expressive but lightweight."],
+      "sketchModule": "/sketches/p06/sketch.js",
+      "thumbLabel": "p06",
+      "featured": true
+    },
+    {
+      "id": "p07",
+      "title": "Project 07 — Cellular",
+      "short": "A minimal cellular automaton riff.",
+      "concept": "Emergence from simple local rules.",
+      "whatItDoes": "Evolves a grid-based pattern over time.",
+      "howToInteract": ["Click to seed.", "Press P to pause/play."],
+      "tools": ["p5.js", "JavaScript"],
+      "challenges": ["Keeping the rule set readable and compelling."],
+      "sketchModule": "/sketches/p07/sketch.js",
+      "thumbLabel": "p07",
+      "featured": false
+    },
+    {
+      "id": "p08",
+      "title": "Project 08 — Audio Placeholder",
+      "short": "A visualizer-ready scaffold (silent by default).",
+      "concept": "A structure prepared for sound input later.",
+      "whatItDoes": "Draws a reactive composition using simulated input.",
+      "howToInteract": ["Press A to toggle 'audio' sim."],
+      "tools": ["p5.js", "JavaScript"],
+      "challenges": ["Designing a visual system that scales with sound."],
+      "sketchModule": "/sketches/p08/sketch.js",
+      "thumbLabel": "p08",
+      "featured": false
+    },
+    {
+      "id": "p09",
+      "title": "Project 09 — Modular Poster",
+      "short": "A generative poster layout system.",
+      "concept": "Editorial composition with random constraints.",
+      "whatItDoes": "Builds a modular poster with type + shapes.",
+      "howToInteract": ["Click to regenerate.", "Press S to save frame."],
+      "tools": ["p5.js", "JavaScript"],
+      "challenges": ["Maintaining strong hierarchy across random outputs."],
+      "sketchModule": "/sketches/p09/sketch.js",
+      "thumbLabel": "p09",
+      "featured": false
+    },
+    {
+      "id": "p10",
+      "title": "Project 10 — 3D Study",
+      "short": "A lightweight WEBGL study with minimal geometry.",
+      "concept": "Spatial rhythm using simple primitives.",
+      "whatItDoes": "Renders a rotating field in WEBGL.",
+      "howToInteract": ["Drag to orbit.", "Press W to toggle wireframe."],
+      "tools": ["p5.js (WEBGL)", "JavaScript"],
+      "challenges": ["Keeping it fast on laptops and mobile."],
+      "sketchModule": "/sketches/p10/sketch.js",
+      "thumbLabel": "p10",
+      "featured": false
+    },
+    {
+      "id": "p11",
+      "title": "Project 11 — Final Composition",
+      "short": "A final piece that ties the semester together.",
+      "concept": "Combines motion, type, and interaction into one system.",
+      "whatItDoes": "Generates a composed scene with controllable parameters.",
+      "howToInteract": ["Use mouse + keys shown on screen."],
+      "tools": ["p5.js", "JavaScript"],
+      "challenges": ["Unifying multiple ideas into a single coherent piece."],
+      "sketchModule": "/sketches/p11/sketch.js",
+      "thumbLabel": "p11",
+      "featured": true
+    }
+  ]
+}
+

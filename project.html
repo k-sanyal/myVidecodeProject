@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Project — Portfolio</title>
+    <meta name="description" content="Project detail page with embedded p5.js sketch." />
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.9.4/lib/p5.min.js"></script>
+  </head>
+  <body>
+    <div class="wrap">
+      <header class="nav">
+        <a class="brand" href="/index.html">
+          <strong>Portfolio</strong>
+          <span>p5.js / creative coding</span>
+        </a>
+        <nav class="navlinks">
+          <a class="pill" data-nav="home" href="/index.html">Home</a>
+          <a class="pill" data-nav="projects" href="/projects/index.html">Projects</a>
+          <a class="pill" data-nav="about" href="/about.html">About</a>
+        </nav>
+      </header>
+
+      <div class="projectTop">
+        <div>
+          <h1 id="title">Project</h1>
+          <div id="meta" class="projectMeta"></div>
+        </div>
+        <div class="ctaRow">
+          <a class="btn secondary" href="/projects/index.html">Back to gallery</a>
+          <a id="nextBtn" class="btn" href="#">Next →</a>
+        </div>
+      </div>
+
+      <section class="canvasWrap">
+        <div class="canvasBar">
+          <div class="hint" id="hint"></div>
+          <div class="hint">
+            <span class="kbd">←</span> <span class="kbd">→</span> navigate
+            <span class="kbd">F</span> fullscreen
+          </div>
+        </div>
+        <div id="canvasHost" class="canvasHost" aria-label="p5 sketch container"></div>
+      </section>
+
+      <div class="twoCol">
+        <section class="box">
+          <h3>Concept</h3>
+          <p id="concept"></p>
+          <h3 style="margin-top: 12px">What it does</h3>
+          <p id="what"></p>
+        </section>
+        <section class="box">
+          <h3>Interaction</h3>
+          <ul id="how" class="list"></ul>
+          <h3 style="margin-top: 12px">Development notes</h3>
+          <ul id="notes" class="list"></ul>
+        </section>
+      </div>
+
+      <footer class="footer">
+        <div>© <span id="year"></span> Jake</div>
+        <div class="mono" id="counter"></div>
+      </footer>
+    </div>
+
+    <script type="module">
+      import { setActiveNav, loadProjects, qs, escapeHtml } from "/js/site.js";
+      setActiveNav();
+      document.getElementById("year").textContent = String(new Date().getFullYear());
+
+      const host = document.getElementById("canvasHost");
+      const projects = await loadProjects();
+      const id = qs("id") ?? projects[0]?.id;
+      const idx = Math.max(0, projects.findIndex((p) => p.id === id));
+      const project = projects[idx] ?? projects[0];
+
+      document.title = `${project.title} — Portfolio`;
+      document.getElementById("title").textContent = project.title;
+      document.getElementById("meta").textContent = project.short;
+      document.getElementById("concept").textContent = project.concept ?? "";
+      document.getElementById("what").textContent = project.whatItDoes ?? "";
+      document.getElementById("counter").textContent = `${idx + 1} / ${projects.length}`;
+
+      const how = document.getElementById("how");
+      how.innerHTML = (project.howToInteract ?? []).map((x) => `<li>${escapeHtml(x)}</li>`).join("");
+
+      const notes = document.getElementById("notes");
+      const toolLine = `Tools: ${(project.tools ?? []).join(", ") || "—"}`;
+      const challengeLine = `Challenges: ${(project.challenges ?? []).join(" • ") || "—"}`;
+      notes.innerHTML = [`<li>${escapeHtml(toolLine)}</li>`, `<li>${escapeHtml(challengeLine)}</li>`].join("");
+
+      document.getElementById("hint").textContent =
+        (project.howToInteract?.[0] ? `Try: ${project.howToInteract[0]}` : "Interact with mouse/keys.");
+
+      const next = projects[(idx + 1) % projects.length];
+      const prev = projects[(idx - 1 + projects.length) % projects.length];
+      const nextBtn = document.getElementById("nextBtn");
+      nextBtn.href = `/project.html?id=${encodeURIComponent(next.id)}`;
+
+      function goTo(p) {
+        window.location.href = `/project.html?id=${encodeURIComponent(p.id)}`;
+      }
+
+      function toggleFullscreen() {
+        const el = host;
+        if (!document.fullscreenElement) el.requestFullscreen?.();
+        else document.exitFullscreen?.();
+      }
+
+      window.addEventListener("keydown", (e) => {
+        if (e.key === "ArrowRight") goTo(next);
+        if (e.key === "ArrowLeft") goTo(prev);
+        if (e.key.toLowerCase() === "f") toggleFullscreen();
+      });
+
+      // Load sketch as a module. Each sketch exports: `makeSketch(project)` returning a p5 instance mode function.
+      const mod = await import(project.sketchModule);
+      const makeSketch = mod?.makeSketch;
+      if (typeof makeSketch !== "function") throw new Error("Sketch module missing makeSketch()");
+      new p5(makeSketch({ project, hostId: "canvasHost" }), host);
+    </script>
+  </body>
+</html>
+
